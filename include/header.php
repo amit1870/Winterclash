@@ -2,31 +2,28 @@
 
 include_once 'db_connect.php';
 include_once 'functions.php';
+include_once 'winterclash.php';
 
 sec_session_start();
 ?>
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="http://localhost/winterclash/css/bootstrap.css" rel="stylesheet">
-    <link href="http://localhost/winterclash/css/navbar-static-top.css" rel="stylesheet">
-    <script type="text/javascript" src="http://localhost/winterclash/js/connection.js"></script>
+    <link href="<?php echo ROOT ; ?>/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo ROOT ; ?>/css/navbar-fixed-top.css" rel="stylesheet">
+    <script type="text/javascript" src="<?php echo ROOT ; ?>/js/connection.js"></script>
     <script type="text/javascript">
-      function get_teams(divid){
-        url = 'http://localhost/winterclash/include/winterclash.php';
-        param = 'fn=get_teams';
-        post_connection(url,divid,param);
-      }
+      
     </script>
     <!--[if lt IE 9]>
-      <script src="http://localhost/winterclash/js/html5shiv.js"></script>
-      <script src="http://localhost/winterclash/js/respond.min.js"></script>
+      <script src="<?php echo ROOT ; ?>/js/html5shiv.js"></script>
+      <script src="<?php echo ROOT ; ?>/js/respond.min.js"></script>
     <![endif]-->
   </head>
 
 
 <!-- Static navbar -->
-<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -40,34 +37,22 @@ sec_session_start();
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" onmouseover="get_teams('teams')">Teams</a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Teams</a>
           <ul class="dropdown-menu" id="teams">
-            <!-- <li><a href="#">All Teams</a></li> -->
+            <?php echo get_teams($mysqli); ?>
           </ul>
         </li>
         
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tournaments</a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
+            <?php echo get_tournaments($mysqli); ?>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grounds</a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
+            <?php echo get_grounds($mysqli); ?>
           </ul>
         </li>
         <li>
@@ -81,32 +66,22 @@ sec_session_start();
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Statistics</b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Statistics</a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="<?php echo ROOT ; ?>/ranking.php">Ranking</a></li>
+            <li><a href="<?php echo ROOT ; ?>/gallery.php">Gallery</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile</b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo ROOT ; ?>/img/wc_user.png" style="width:24px;height:24px;"></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="<?php echo ROOT ; ?>/profile.php?id=<?php echo $_SESSION['player_id'] ;?>"><?php echo $_SESSION['player'] ?></a></li>
+            <li><a href="<?php echo ROOT ; ?>/include/logout.php">Logout</a></li>
           </ul>
         </li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
 </div>
-<script src="http://localhost/winterclash/js/jquery.js"></script>
-<script src="http://localhost/winterclash/js/bootstrap.js"></script>
+<script src="<?php echo ROOT ; ?>/js/jquery.js"></script>
+<script src="<?php echo ROOT ; ?>/js/bootstrap.js"></script>

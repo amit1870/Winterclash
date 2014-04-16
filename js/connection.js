@@ -23,5 +23,12 @@ function post_connection(url,divid,param){
 }
 
 function get_connection(url,divid,param){
-	;
+	var xhr = createXhr() ;
+	xhr.onreadystatechange=function() {
+	    if(xhr.readyState==4 && xhr.status==200) {
+	        document.getElementById(divid.toString()).innerHTML = xhr.responseText;        
+	    }
+	}
+    xhr.open("GET",url,true);
+    xhr.send(null);
 }

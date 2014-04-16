@@ -1,22 +1,5 @@
 <?php
 
-/*
- * Copyright (C) 2013 peredur.net
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 include_once 'wc-config.php';
 
 function sec_session_start() {
@@ -81,6 +64,9 @@ function login($handle, $passkey, $mysqli) {
 
                     $_SESSION['player'] = $player;
                     $_SESSION['login_string'] = hash('sha512', $passkey . $user_browser);
+                    $stmt = $mysqli->prepare("UPDATE players SET status = ? WHERE handle = ?") ;
+                    $stmt->bind_param('is',$status = 1,$handle);
+                    $stmt->execute();
 
                     // Login successful. 
                     return true;

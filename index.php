@@ -14,15 +14,17 @@ if (login_check($mysqli) == true) {
 <!DOCTYPE html>
 <html>
 	<head>
-		<link href="http://localhost/winterclash/css/bootstrap.css" rel="stylesheet">
+		<link href="<?php echo ROOT ; ?>/css/bootstrap.css" rel="stylesheet">
 
-	    <link href="http://localhost/winterclash/css/signin.css" rel="stylesheet">
-	    <link href="http://localhost/winterclash/css/signup.css" rel="stylesheet">
-	    <script type="text/JavaScript" src="http://localhost/winterclash/js/sha512.js"></script> 
-        <script type="text/JavaScript" src="http://localhost/winterclash/js/forms.js"></script>
+	    <link href="<?php echo ROOT ; ?>/css/signin.css" rel="stylesheet">
+	    <link href="<?php echo ROOT ; ?>/css/signup.css" rel="stylesheet">
+	    <link href="<?php echo ROOT ; ?>/css/datepicker.css" rel="stylesheet">
+	    <script type="text/JavaScript" src="<?php echo ROOT ; ?>/js/bootstrap-datepicker.js"></script> 
+	    <script type="text/JavaScript" src="<?php echo ROOT ; ?>/js/sha512.js"></script> 
+        <script type="text/JavaScript" src="<?php echo ROOT ; ?>/js/forms.js"></script>
         <!--[if lt IE 9]>
-	      <script src="http://localhost/winterclash/js/html5shiv.js"></script>
-	      <script src="http://localhost/winterclash/js/respond.min.js"></script>
+	      <script src="<?php echo ROOT ; ?>/js/html5shiv.js"></script>
+	      <script src="<?php echo ROOT ; ?>/js/respond.min.js"></script>
 	    <![endif]-->
 	</head>
 	<body>

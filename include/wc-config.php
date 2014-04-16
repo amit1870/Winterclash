@@ -11,10 +11,12 @@
 /**
  * These are the database login details
  */
-define("HOST", "localhost"); 			// The host you want to connect to. 
+
+define("HOST", "$_SERVER[HTTP_HOST]");   // The host you want to connect to. 
 define("USER", "root"); 			// The database username. 
 define("PASSWORD", ""); 	// The database password. 
 define("DATABASE", "winterclash");             // The database name.
+define("ROOT", "http://$_SERVER[HTTP_HOST]/Winterclash"); //root path
 
 /**
  * Who can register and what the default role will be
@@ -28,6 +30,7 @@ define("DATABASE", "winterclash");             // The database name.
  * However, additional roles can be added and so there's nothing stopping
  * anyone from defining a different default.
  */
+
 define("CAN_REGISTER", "any");
 define("DEFAULT_ROLE", "member");
 
