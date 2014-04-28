@@ -2,7 +2,6 @@
 
 include_once 'include/header.php';
 
-
 function get_team($tid,$mysqli){
 	$stmt = $mysqli->prepare("SELECT tm_name,history FROM teams WHERE id = ?");
 	$stmt->bind_param('i',$tid);
@@ -11,7 +10,7 @@ function get_team($tid,$mysqli){
 	$stmt->bind_result($tm_name, $history);
 	$stmt->fetch();
 	$team_info = "<div class='page-header'>";
-	$team_info .="<h1>$tm_name</h1></div>";
+	$team_info .="<h1>$tm_name</h1><a href='create_team.php?pid=$_SESSION[player_id]' class='btn btn-success' style='position:absolute;top:0px;right:12px;'>Create Team</a></div>";
 	$team_info .="<div class='well'><p>$history</p></div>";
 	return $team_info;
 }

@@ -149,15 +149,53 @@ function connected_players($tid,$mysqli){
         $profile_pics[] = $row['profile_pic'];
     }
     $chatbar = "";
+    $chatbar .="<style>";
+    $chatbar .=".black_overlay{
+                  display: none;
+                  position: absolute;
+                  top: 0%;
+                  left: 0%;
+                  width: 100%;
+                  height: 100%;
+                  background-color: black;
+                  z-index:1001;
+                  -moz-opacity: 0;
+                  opacity:.0;
+                  filter: alpha(opacity=0);
+              }
+              .white_content {
+                  display: none;
+                  position: absolute;
+                  top: 25%;
+                  left: 75%;
+                  bottom: 0px;
+                  width: 300px;
+                  height: 300px;
+                  padding: 5px;
+                  border: 1px solid #eeeeee;
+                  background-color: white;
+                  z-index:1002;
+                  overflow: auto;
+                  border-radius:5px;
+              }";
+    $chatbar .="</style>";
     $n = 0 ;
     foreach ($ids as $id) {
         if($status[$n]){
-            $chatbar .= "<div id='$id' onclick='open_window(&#39;$id&#39;)' style='height:40px;'><img style='height:40px;width:40px;margin-right:10px;' src='".ROOT."/img/uploads/$profile_pics[$n]'>$players[$n]<img style='float:right;padding-top:13px;' src='".ROOT."/img/online.png'></div>";    
+            $chatbar .= "<div id='$id' onclick='open_window(&#39;$players[$n]&#39;,$id)' style='height:40px;'><img style='height:40px;width:40px;margin-right:10px;' src='".ROOT."/img/uploads/$profile_pics[$n]'>$players[$n]<img style='float:right;padding-top:13px;' src='".ROOT."/img/online.png'></div>";    
         }else {
-            $chatbar .= "<div id='$id' onclick='open_window(&#39;$id&#39;)' style='height:40px'><img style='height:40px;width:40px;margin-right:10px;' src='".ROOT."/img/uploads/$profile_pics[$n]'>$players[$n]<img style='float:right;padding-top:13px;' src='".ROOT."/img/offline.png'></div>";    
+            $chatbar .= "<div id='$id' onclick='open_window(&#39;$players[$n]&#39;,$id)' style='height:40px'><img style='height:40px;width:40px;margin-right:10px;' src='".ROOT."/img/uploads/$profile_pics[$n]'>$players[$n]<img style='float:right;padding-top:13px;' src='".ROOT."/img/offline.png'></div>";    
         }
         $n++;
     }
+    $chatbar .="<div id='light' class='white_content'>
+    
+    <button onclick ='close_window()' style='position:absolute;right:0px;top:0px;padding:0px;border-radius:2px;'>&times;</button>
+    <div><form><input type='text' style='width:297px;left:0px;bottom:0px;position:absolute;' name='msg'></form></div> 
+    </div>   
+    <div id='fade' class='black_overlay'>
+    </div>";
+
     $chatbar .="<script src='".ROOT."/js/chatbar.js' type='text/javascript'></script>";
 
     return $chatbar;
