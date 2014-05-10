@@ -14,7 +14,7 @@
 
 define("HOST", "$_SERVER[HTTP_HOST]");   // The host you want to connect to. 
 define("USER", "root"); 			// The database username. 
-define("PASSWORD", ""); 	// The database password. 
+define("PASSWORD", "n0wL!nux"); 	// The database password. 
 define("DATABASE", "winterclash");             // The database name.
 define("ROOT", "http://$_SERVER[HTTP_HOST]/Winterclash"); //root path
 
